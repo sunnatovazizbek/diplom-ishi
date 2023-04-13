@@ -28,4 +28,17 @@ public class UserPayload {
         this.phone = phone;
         this.adress = adress;
     }
+
+    public UserPayload(String username, String password, String fullName, String phone) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+    }
+
+    public UserPayload(String username, String password, String fullName) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+    }
 }
