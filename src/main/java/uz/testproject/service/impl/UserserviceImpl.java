@@ -57,9 +57,9 @@ public class UserserviceImpl implements UserService {
             if (user != null) {
                 if (user.getPassword().equals(payload.getPassword())) {
                     return ResponseEntity.ok(new Result(true, "Shaxsiy kabinetga hush kelibsz", null));
+                }else {
+                    return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
                 }
-            } else {
-                return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
             }
             return new ResponseEntity(new Result(false, "user not found", null), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
