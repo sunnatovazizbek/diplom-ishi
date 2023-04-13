@@ -32,8 +32,8 @@ public class UserserviceImpl implements UserService {
             user.setUsername(payload.getUsername());
             user.setPassword(payload.getPassword());
             user.setFullName(payload.getFullName());
-            user.setAdress(payload.getAdress());
-            user.setPhoneNumber(payload.getPhone());
+//            user.setAdress(payload.getAdress());
+//            user.setPhoneNumber(payload.getPhone());
             if (payload.getPassword().length() >= 6) {
                 user = userRepository.save(user);
                 if (user != null) {
@@ -102,8 +102,8 @@ public class UserserviceImpl implements UserService {
             User user = userRepository.findById(payload.getId()).get();
             user.setUsername(payload.getUsername());
             user.setFullName(payload.getFullName());
-            user.setPhoneNumber(payload.getPhone());
-            user.setAdress(payload.getAdress());
+//            user.setPhoneNumber(payload.getPhone());
+//            user.setAdress(payload.getAdress());
             user.setPassword(payload.getPassword());
             user = userRepository.save(user);
             if (user != null) {
