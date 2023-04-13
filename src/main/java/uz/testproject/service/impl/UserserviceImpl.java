@@ -50,6 +50,25 @@ public class UserserviceImpl implements UserService {
     }
 
     @Override
+    public ResponseEntity<?> checkUser(UserPayload payload) {
+        try {
+
+            User user = userRepository.findByUsername(payload.getUsername());
+            if (user != null) {
+                if (user.getPassword().equals(payload.getPassword())) {
+                    return ResponseEntity.ok(new Result(true, "Shaxsiy kabinetga hush kelibsz", null));
+                }
+            } else {
+                return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
+            }
+            return new ResponseEntity(new Result(false, "user not found", null), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            log.error("error user", e.getMessage());
+            return new ResponseEntity(new Result(false, "save not succesfull", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
     public ResponseEntity<?> getAllUsers() {
         try {
             List<User> users = userRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
@@ -86,7 +105,7 @@ public class UserserviceImpl implements UserService {
             user.setPhoneNumber(payload.getPhone());
             user.setAdress(payload.getAdress());
             user.setPassword(payload.getPassword());
-            user=userRepository.save(user);
+            user = userRepository.save(user);
             if (user != null) {
                 return ResponseEntity.ok(new Result(true, "edit succesfull", user));
             }
@@ -107,7 +126,6 @@ public class UserserviceImpl implements UserService {
             return new ResponseEntity(new Result(false, "delete not succesfull", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 
 }

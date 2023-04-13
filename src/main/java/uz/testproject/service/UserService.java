@@ -8,6 +8,8 @@ public interface UserService {
 
     ResponseEntity<?> saveUser(UserPayload payload);
 
+    ResponseEntity<?> checkUser(UserPayload payload);
+
     ResponseEntity<?> getAllUsers();
 
     ResponseEntity<?> getAllPageUsers(int page, int size);

@@ -18,6 +18,11 @@ public class UserController {
 
     private final UserService userService;
 
+    @PostMapping("/login")
+    public ResponseEntity<?> checkUser(@RequestBody UserPayload payload){
+        return userService.checkUser(payload);
+    }
+
     @PostMapping("/save")
     public ResponseEntity<?> saveUser(@RequestBody UserPayload payload){
         return userService.saveUser(payload);
