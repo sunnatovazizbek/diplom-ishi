@@ -27,26 +27,27 @@ public class UserserviceImpl implements UserService {
     public ResponseEntity<?> saveUser(UserPayload payload) {
         try {
 
-            User user = new User();
-
-            user.setUsername(payload.getUsername());
-            user.setPassword(payload.getPassword());
-            user.setFullName(payload.getFullName());
+            User user = userRepository.findByUsername(payload.getUsername());
+            if (user == null) {
+                user.setUsername(payload.getUsername());
+                user.setPassword(payload.getPassword());
+                user.setFullName(payload.getFullName());
 //            user.setAdress(payload.getAdress());
 //            user.setPhoneNumber(payload.getPhone());
-            if (payload.getPassword().length() >= 6) {
-                user = userRepository.save(user);
-                if (user != null) {
-                    return ResponseEntity.ok(new Result(true, "save succesfull", user));
+                if (payload.getPassword().length() >= 6) {
+                    user = userRepository.save(user);
+                    if (user != null) {
+                        return ResponseEntity.ok(new Result(true, "save succesfull", user));
+                    }
+                } else {
+                    return ResponseEntity.ok(new Result(false, "password uzunligi kamida 6 ta bo'lsin", null));
                 }
-            } else {
-                return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
             }
+            return ResponseEntity.ok(new Result(false, "username oldin ro'yhatdan o'tgan", null));
         } catch (Exception e) {
             log.error("error user", e.getMessage());
             return new ResponseEntity(new Result(false, "save not succesfull", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return null;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class UserserviceImpl implements UserService {
                     return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
                 }
             }
-            return new ResponseEntity(new Result(false, "user not found", null), HttpStatus.NOT_FOUND);
+            return ResponseEntity.ok(new Result(false, "user not found", null));
         } catch (Exception e) {
             log.error("error user", e.getMessage());
             return new ResponseEntity(new Result(false, "save not succesfull", null), HttpStatus.INTERNAL_SERVER_ERROR);

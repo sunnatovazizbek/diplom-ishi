@@ -19,7 +19,7 @@ import uz.testproject.entity.abstractEntity.AbstractEntity;
 @Entity(name = "foydalanuvchi")
 public class User extends AbstractEntity {
 
-    @Column(unique = true, columnDefinition = "TEXT")
+//    @Column(unique = true, columnDefinition = "TEXT")
     private String username;
 
     private String password;
