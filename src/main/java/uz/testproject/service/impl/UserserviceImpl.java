@@ -26,9 +26,9 @@ public class UserserviceImpl implements UserService {
     @Override
     public ResponseEntity<?> saveUser(UserPayload payload) {
         try {
-
             User user = userRepository.findByUsername(payload.getUsername());
             if (user == null) {
+                user=new User();
                 user.setUsername(payload.getUsername());
                 user.setPassword(payload.getPassword());
                 user.setFullName(payload.getFullName());
@@ -57,7 +57,7 @@ public class UserserviceImpl implements UserService {
             User user = userRepository.findByUsername(payload.getUsername());
             if (user != null) {
                 if (user.getPassword().equals(payload.getPassword())) {
-                    return ResponseEntity.ok(new Result(true, "Shaxsiy kabinetga hush kelibsz", null));
+                    return ResponseEntity.ok(new Result(true, "Shaxsiy kabinetga hush kelibsz", user));
                 }else {
                     return ResponseEntity.ok(new Result(false, "password kiritishda xatolik", null));
                 }
