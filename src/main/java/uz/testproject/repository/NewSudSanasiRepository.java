@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface NewSudSanasiRepository extends JpaRepository<NewSudSanasi, Long> {
 
-    @Query("select new uz.testproject.payload.NewSudSanasiPayload(n.date,n.body, n.region, n.user.username,n.dateActive) from NewSudSanasi n")
+    @Query("select new uz.testproject.payload.NewSudSanasiPayload(n.id,n.date,n.body, n.region, n.dateActive) from NewSudSanasi n")
     List<NewSudSanasiPayload> getByUsername(String username);
 
 }

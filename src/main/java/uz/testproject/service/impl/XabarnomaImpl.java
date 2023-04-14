@@ -32,7 +32,7 @@ public class XabarnomaImpl implements XabarnomaService {
             xabarnoma.setUser(user);
             xabarnoma=xabarnomaRepository.save(xabarnoma);
             if (xabarnoma != null) {
-                return ResponseEntity.ok(new Result(true, "created xabarnoma succesfull", null));
+                return ResponseEntity.ok(new Result(true, "created xabarnoma succesfull", xabarnoma));
             } else {
                 return ResponseEntity.ok(new Result(false, "xabarnoma error in save", null));
             }
@@ -67,13 +67,13 @@ public class XabarnomaImpl implements XabarnomaService {
         try {
             List<Xabarnoma> xabarnomaList=xabarnomaRepository.findByUserUsername(username);
             if (xabarnomaList != null) {
-                return ResponseEntity.ok(new Result(true, "getXabarnomaUsername succesfull", xabarnomaList));
+                return ResponseEntity.ok(new Result(true, "getXabarnomaUsername xabarnoma succesfull", xabarnomaList));
             } else {
-                return new ResponseEntity(new Result(false, "error getXabarnomaUsername", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "xabarnoma error in getXabarnomaUsername", null));
             }
-        }catch (Exception e){
-            log.error("getXabarnomaUsername error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "getXabarnomaUsername error", null), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            log.error("getXabarnomaUsername xabarnoma error -> {}", e.getMessage());
+            return ResponseEntity.ok(new Result(false, "xabarnoma error in getXabarnomaUsername", null));
         }
     }
 

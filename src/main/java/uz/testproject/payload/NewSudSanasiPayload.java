@@ -28,11 +28,11 @@ public class NewSudSanasiPayload {
 
     private String user;
 
-    public NewSudSanasiPayload(String date, String body, String region, String user,boolean dateActive) {
+    public NewSudSanasiPayload(Long id,String date, String body, String region,boolean dateActive) {
+        this.id=id;
         this.date = date;
         this.body=body;
         this.region = region;
-        this.user = user;
         this.dateActive=dateActive;
     }
 }

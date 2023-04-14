@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.testproject.payload.NewsPayload;
 import uz.testproject.payload.XabarnomaPayload;
+import uz.testproject.repository.XabarnomaRepository;
 import uz.testproject.service.NewsService;
 import uz.testproject.service.XabarnomaService;
 
@@ -17,6 +18,7 @@ import uz.testproject.service.XabarnomaService;
 public class XabarnomaController {
 
     private final XabarnomaService xabarnomaService;
+    private final XabarnomaRepository xabarnomaRepository;
 
     @PostMapping("/save")
     public ResponseEntity<?> saveXabarnoma(@RequestBody XabarnomaPayload payload){
@@ -29,13 +31,18 @@ public class XabarnomaController {
     }
 
     @DeleteMapping("/{xabarnomaId}")
-    public boolean deleteNewsId(@PathVariable("xabarnomaId") Long id){
+    public boolean deleteXabarnomaId(@PathVariable("xabarnomaId") Long id){
         return xabarnomaService.deleteById(id);
     }
 
     @GetMapping("/{userName}")
-    public ResponseEntity<?> NewsIdBody(@PathVariable("userName") String username){
+    public ResponseEntity<?> UserNameXabarnoma(@PathVariable("userName") String username){
         return xabarnomaService.getXabarnomaUsername(username);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllIdBody(){
+        return ResponseEntity.ok(xabarnomaRepository.findAll());
     }
 
 

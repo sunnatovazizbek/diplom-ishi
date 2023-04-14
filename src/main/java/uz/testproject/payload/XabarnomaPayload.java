@@ -16,7 +16,6 @@ public class XabarnomaPayload {
 
     private Long id;
 
-    @Column(unique = true, columnDefinition = "TEXT")
     private String body;
 
     private String userName;
