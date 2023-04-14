@@ -29,6 +29,7 @@ public class NewSudSanasiImpl implements NewSudSanasiService {
             newSudSanasi.setRegion(payload.getRegion());
             newSudSanasi.setDate(payload.getDate());
             newSudSanasi.setBody(payload.getBody());
+            newSudSanasi.setDateActive(payload.isDateActive());
             User user=userRepository.findByUsername(payload.getUser());
             newSudSanasi.setUser(user);
             newSudSanasi = newSudSanasiRepository.save(newSudSanasi);
@@ -50,6 +51,7 @@ public class NewSudSanasiImpl implements NewSudSanasiService {
             newSudSanasi.setRegion(payload.getRegion());
             newSudSanasi.setDate(payload.getDate());
             newSudSanasi.setBody(payload.getBody());
+            newSudSanasi.setDateActive(payload.isDateActive());
             User user=userRepository.findByUsername(payload.getUser());
             newSudSanasi.setUser(user);
             newSudSanasi = newSudSanasiRepository.save(newSudSanasi);
