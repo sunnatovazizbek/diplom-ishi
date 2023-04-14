@@ -24,12 +24,15 @@ public class NewSudSanasiPayload {
 
     String body;
 
+    private boolean dateActive;
+
     private String user;
 
-    public NewSudSanasiPayload(String date, String body, String region, String user) {
+    public NewSudSanasiPayload(String date, String body, String region, String user,boolean dateActive) {
         this.date = date;
         this.region = region;
-        this.body=body;
         this.user = user;
+        this.body=body;
+        this.dateActive=dateActive;
     }
 }
