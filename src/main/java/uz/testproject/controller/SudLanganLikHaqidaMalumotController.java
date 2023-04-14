@@ -29,7 +29,7 @@ public class SudLanganLikHaqidaMalumotController {
     }
 
     @GetMapping("/{userName}")
-    public ResponseEntity<?> getSudlanganlikAboutListPage(@PathVariable("newsId") String userName){
+    public ResponseEntity<?> getSudlanganlikAboutListPage(@PathVariable("userName") String userName){
         return sudlanganlikHaqidaService.getSudlanganlikHaqidaMalumot(userName);
     }
 

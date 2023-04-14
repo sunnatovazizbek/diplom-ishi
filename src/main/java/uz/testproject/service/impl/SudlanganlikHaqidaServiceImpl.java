@@ -73,7 +73,7 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
             return ResponseEntity.ok(Result.ok(sudlanganlikHaqidaMalumots));
         } catch (Exception e) {
             log.error("error sudlanganlikHaqidaMalumot", e.getMessage());
-            return new ResponseEntity(new Result(false, "error sudlanganlikHaqidaMalumot", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "error sudlanganlikHaqidaMalumot", null));
         }
     }
 
