@@ -22,11 +22,14 @@ public class NewSudSanasiPayload {
 
     private String region;
 
+    String body;
+
     private String user;
 
-    public NewSudSanasiPayload(String date, String region, String user) {
+    public NewSudSanasiPayload(String date, String body, String region, String user) {
         this.date = date;
         this.region = region;
+        this.body=body;
         this.user = user;
     }
 }

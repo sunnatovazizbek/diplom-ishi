@@ -22,6 +22,8 @@ public class NewSudSanasi extends AbstractEntity {
 
     private String region;
 
+    private String body;
+
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
