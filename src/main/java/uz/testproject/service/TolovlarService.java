@@ -16,7 +16,7 @@ public interface TolovlarService {
 
     ResponseEntity<?> getAllTolovlar();
 
-    ResponseEntity<?> getTolovlarUserId(Long userId);
+    ResponseEntity<?> getTolovlarUserId(String userId);
 
     ResponseEntity<?> deleteTolovlarId(Long tolovId);
 

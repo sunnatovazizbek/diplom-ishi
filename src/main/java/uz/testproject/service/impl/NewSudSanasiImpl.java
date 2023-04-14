@@ -34,11 +34,11 @@ public class NewSudSanasiImpl implements NewSudSanasiService {
             if (newSudSanasi != null) {
                 return ResponseEntity.ok(new Result(true, "created dateSudSanasi succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error dateSudSanasi", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "NewSudDate error in save", null));
             }
         } catch (Exception e) {
             log.error("add news error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error dateSudSanasi", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "NewSudDate error in save", null));
         }
     }
 
@@ -54,11 +54,11 @@ public class NewSudSanasiImpl implements NewSudSanasiService {
             if (newSudSanasi != null) {
                 return ResponseEntity.ok(new Result(true, "edit dateSudSanasi succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error edit dateSudSanasi", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "NewSudDate error in edit", null));
             }
         } catch (Exception e) {
             log.error("edit dateSudSanasi error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error edit dateSudSanasi", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "NewSudDate error in edit", null));
         }
     }
 

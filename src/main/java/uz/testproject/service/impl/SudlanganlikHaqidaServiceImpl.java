@@ -40,10 +40,10 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
             if (sudlanganlikHaqidaMalumot != null) {
                 return ResponseEntity.ok(new Result(true, "save sudlanganlikHaqidaMalumot succesfull", sudlanganlikHaqidaMalumot));
             }
-            return new ResponseEntity(new Result(false, "save sudlanganlikHaqidaMalumot error", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "sudlanganlikHaqidaMalumot error in save", null));
         } catch (Exception e) {
             log.error("save sudlanganlikHaqidaMalumot error", e.getMessage());
-            return new ResponseEntity(new Result(false, "save sudlanganlikHaqidaMalumot error", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "sudlanganlikHaqidaMalumot error in save", null));
         }
     }
 
@@ -61,10 +61,10 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
             if (sudlanganlikHaqidaMalumot != null) {
                 return ResponseEntity.ok(new Result(true, "edit sudlanganlikHaqidaMalumot succesfull", sudlanganlikHaqidaMalumot));
             }
-            return new ResponseEntity(new Result(false, "edit sudlanganlikHaqidaMalumot error", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "sudlanganlikHaqidaMalumot error in edit", null));
         } catch (Exception e) {
             log.error("edit sudlanganlikHaqidaMalumot error", e.getMessage());
-            return new ResponseEntity(new Result(false, "edit sudlanganlikHaqidaMalumot error", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "sudlanganlikHaqidaMalumot error in edit", null));
         }
     }
 

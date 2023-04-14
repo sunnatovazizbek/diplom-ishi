@@ -40,7 +40,7 @@ public class NewsServiceImpl implements NewsService {
             }
         } catch (Exception e) {
             log.error("add news error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "News error in save", null));
         }
     }
 
@@ -56,11 +56,11 @@ public class NewsServiceImpl implements NewsService {
             if (news != null) {
                 return ResponseEntity.ok(new Result(true, "edit news succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "News error in edit", null));
             }
         } catch (Exception e) {
             log.error("edit news error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "edit news error", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "News error in edit", null));
         }
     }
 

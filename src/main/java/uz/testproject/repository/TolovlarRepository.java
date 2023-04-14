@@ -21,6 +21,8 @@ public interface TolovlarRepository extends JpaRepository<Tolovlar, Long> {
 
     List<Tolovlar> findByUserId(Long id);
 
+    List<Tolovlar> findByUserUsername(String user);
+
 //    @Query("select new uz.testproject.payload.NewsPayload(n.id,n.title,n.body,n.img.hashId,n.date) from News n")
 //    Page<NewsPayload> findAllByPage(Pageable pageable);
 

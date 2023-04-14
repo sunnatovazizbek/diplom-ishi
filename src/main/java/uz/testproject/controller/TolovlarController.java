@@ -38,9 +38,9 @@ public class TolovlarController {
         return tolovlarService.getAllTolovlar();
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<?> tolovlarUserName(@PathVariable("userId") Long userId){
-        return tolovlarService.getTolovlarUserId(userId);
+    @GetMapping("/{userName}")
+    public ResponseEntity<?> tolovlarUserName(@PathVariable("userName") String userName){
+        return tolovlarService.getTolovlarUserId(userName);
     }
 
 

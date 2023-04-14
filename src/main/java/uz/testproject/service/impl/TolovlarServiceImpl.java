@@ -35,15 +35,15 @@ public class TolovlarServiceImpl implements TolovlarService {
             User user = userRepository.findByUsername(payload.getUserName());
             tolovlar.setPrice(payload.getPrice());
             tolovlar.setSudlanganlikHaqidaMalumot(sudlanganlikHaqidaMalumot);
-            tolovlar = tolovlarRepository.save(tolovlar);
             tolovlar.setUser(user);
+            tolovlar = tolovlarRepository.save(tolovlar);
             if (tolovlar != null) {
                 return ResponseEntity.ok(Result.ok(tolovlar));
             }
-            return new ResponseEntity(new Result(false, "error save payment", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "tolovlar error in save", null));
         } catch (Exception e) {
             log.error("error payment(tolovlar)", e.getMessage());
-            return new ResponseEntity(new Result(false, "error save payment", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "tolovlar error in save", null));
         }
     }
 
@@ -57,10 +57,10 @@ public class TolovlarServiceImpl implements TolovlarService {
             if (tolovlar != null) {
                 return ResponseEntity.ok(Result.ok(tolovlar));
             }
-            return new ResponseEntity(new Result(false, "edit save payment", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "tolovlar error in edit", null));
         } catch (Exception e) {
             log.error("error edit payment(tolovlar)", e.getMessage());
-            return new ResponseEntity(new Result(false, "edit save payment", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "tolovlar error in edit", null));
         }
     }
 
@@ -76,13 +76,13 @@ public class TolovlarServiceImpl implements TolovlarService {
     }
 
     @Override
-    public ResponseEntity<?> getTolovlarUserId(Long userId) {
+    public ResponseEntity<?> getTolovlarUserId(String userName) {
         try {
-            List<Tolovlar> tolovlarListUserId = tolovlarRepository.findByUserId(userId);
-            return ResponseEntity.ok(Result.ok(tolovlarListUserId));
+            List<Tolovlar> tolovlarListUserId = tolovlarRepository.findByUserUsername(userName);
+            return ResponseEntity.ok(new Result(true,"succes tolovlarList",tolovlarListUserId));
         } catch (Exception e) {
             log.error("error payment(tolovlar)", e.getMessage());
-            return new ResponseEntity(new Result(false, "error tolovlarListUserId payment", null), HttpStatus.CONFLICT);
+            return ResponseEntity.ok(new Result(false, "tolovlarListni olsihda xatolik", null));
         }
     }
 

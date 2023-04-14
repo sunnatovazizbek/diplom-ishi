@@ -46,7 +46,7 @@ public class UserserviceImpl implements UserService {
             return ResponseEntity.ok(new Result(false, "username oldin ro'yhatdan o'tgan", null));
         } catch (Exception e) {
             log.error("error user", e.getMessage());
-            return new ResponseEntity(new Result(false, "save not succesfull", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "user error in save", null));
         }
     }
 

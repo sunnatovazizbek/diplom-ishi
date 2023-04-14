@@ -34,11 +34,11 @@ public class XabarnomaImpl implements XabarnomaService {
             if (xabarnoma != null) {
                 return ResponseEntity.ok(new Result(true, "created xabarnoma succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error xabarnoma", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "xabarnoma error in save", null));
             }
         } catch (Exception e) {
             log.error("add xabarnoma error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error xabarnoma", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "xabarnoma error in save", null));
         }
     }
 
@@ -54,11 +54,11 @@ public class XabarnomaImpl implements XabarnomaService {
             if (xabarnoma != null) {
                 return ResponseEntity.ok(new Result(true, "edit xabarnoma succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error xabarnoma", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "xabarnoma error in edit", null));
             }
         } catch (Exception e) {
             log.error("edit xabarnoma error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error xabarnoma", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "xabarnoma error in edit", null));
         }
     }
 

@@ -28,11 +28,11 @@ public class QarorlarServiceImpl implements QarorlarService {
             if (qarorlar != null) {
                 return ResponseEntity.ok(new Result(true, "created qarorlar succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error qarorlar save", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "Qarorlar error in save", null));
             }
         } catch (Exception e) {
             log.error("add qarorlar error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "error qarorlar save", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.ok(new Result(false, "Qarorlar error in save", null));
         }
     }
 
@@ -46,11 +46,11 @@ public class QarorlarServiceImpl implements QarorlarService {
             if (qarorlar != null) {
                 return ResponseEntity.ok(new Result(true, "edit qarorlar succesfull", null));
             } else {
-                return new ResponseEntity(new Result(false, "error edit qarorlar", null), HttpStatus.BAD_REQUEST);
+                return ResponseEntity.ok(new Result(false, "Qarorlar error in edit", null));
             }
         } catch (Exception e) {
             log.error("edit qarorlar error -> {}", e.getMessage());
-            return new ResponseEntity(new Result(false, "edit qarorlar error", null), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(new Result(false, "Qarorlar error in edit", null));
         }
     }
 
