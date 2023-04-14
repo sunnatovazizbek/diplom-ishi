@@ -31,6 +31,7 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
         try {
             SudlanganlikHaqidaMalumot sudlanganlikHaqidaMalumot=new SudlanganlikHaqidaMalumot();
             sudlanganlikHaqidaMalumot.setRegion(payload.getRegion());
+            sudlanganlikHaqidaMalumot.setDate(payload.getDate());
             Qarorlar qarorlar=qarorlarRepository.findById(payload.getQarorId()).get();
             sudlanganlikHaqidaMalumot.setQarorlar(qarorlar);
             User user=userRepository.findByUsername(payload.getUserName());
@@ -51,6 +52,7 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
         try {
             SudlanganlikHaqidaMalumot sudlanganlikHaqidaMalumot=sudlanganlikHaqidaRepository.findById(payload.getId()).get();
             sudlanganlikHaqidaMalumot.setRegion(payload.getRegion());
+            sudlanganlikHaqidaMalumot.setDate(payload.getDate());
             Qarorlar qarorlar=qarorlarRepository.findById(payload.getQarorId()).get();
             sudlanganlikHaqidaMalumot.setQarorlar(qarorlar);
             User user=userRepository.findByUsername(payload.getUserName());
@@ -69,8 +71,8 @@ public class SudlanganlikHaqidaServiceImpl implements SudlanganlikHaqidaService 
     @Override
     public ResponseEntity<?> getSudlanganlikHaqidaMalumot(String username) {
         try {
-            List<SudlanganlikHaqidaMalumot> sudlanganlikHaqidaMalumots = sudlanganlikHaqidaRepository.findByUser(username);
-            return ResponseEntity.ok(Result.ok(sudlanganlikHaqidaMalumots));
+            List<SudlanganlikHaqidaMalumot> sudlanganlikHaqidaMalumots = sudlanganlikHaqidaRepository.findByUserUsername(username);
+            return ResponseEntity.ok(new Result(true, "get sudlanganlikHaqidaMalumot", sudlanganlikHaqidaMalumots));
         } catch (Exception e) {
             log.error("error sudlanganlikHaqidaMalumot", e.getMessage());
             return ResponseEntity.ok(new Result(false, "error sudlanganlikHaqidaMalumot", null));

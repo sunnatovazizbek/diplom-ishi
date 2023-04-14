@@ -16,6 +16,6 @@ import java.util.List;
 @Repository
 public interface SudlanganlikHaqidaRepository extends JpaRepository<SudlanganlikHaqidaMalumot, Long> {
 
-    List<SudlanganlikHaqidaMalumot> findByUser(String user);
+    List<SudlanganlikHaqidaMalumot> findByUserUsername(String user);
 
 }
