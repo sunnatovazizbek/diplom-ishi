@@ -30,9 +30,9 @@ public class NewSudSanasiPayload {
 
     public NewSudSanasiPayload(String date, String body, String region, String user,boolean dateActive) {
         this.date = date;
+        this.body=body;
         this.region = region;
         this.user = user;
-        this.body=body;
         this.dateActive=dateActive;
     }
 }
