@@ -92,7 +92,7 @@ public class NewsServiceImpl implements NewsService {
 
         try {
             PageRequest request = PageRequest.of(page, size);
-            Page<News> newsPayloads = newsRepository.findAllByPage(request, Sort.by(Sort.Direction.ASC, "createdAt"));
+            Page<News> newsPayloads = newsRepository.findAllByPage(request);
             for (int i = 0; i < newsPayloads.getContent().size(); i++) {
                 newsPayloads.getContent().get(i).setImg(newsPayloads.getContent().get(i).getImg());
             }
@@ -135,7 +135,7 @@ public class NewsServiceImpl implements NewsService {
     public Page<News> getPageNews(int page, int size) {
 
         PageRequest request = PageRequest.of(page, size);
-        Page<News> news = newsRepository.findAllByPage(request, Sort.by(Sort.Direction.ASC, "createdAt"));
+        Page<News> news = newsRepository.findAllByPage(request);
 
         System.out.println(news.getContent().size() + " ");
 

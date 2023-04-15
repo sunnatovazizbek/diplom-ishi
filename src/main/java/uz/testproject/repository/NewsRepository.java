@@ -20,8 +20,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
     News getById(Long id);
 
-    @Query(nativeQuery = true, value = "select * from News n")
-    Page<News> findAllByPage(Pageable pageable, Sort sort);
+    @Query(nativeQuery = true, value = "select * from News n order by n.created_at desc")
+    Page<News> findAllByPage(Pageable pageable);
 
     @Query("select new uz.testproject.payload.NewsPayload(n.body) from News n where n.id=?1")
     NewsPayload findNewsBody(Long id);
