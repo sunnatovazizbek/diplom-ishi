@@ -67,7 +67,7 @@ public class XabarnomaImpl implements XabarnomaService {
     @Override
     public ResponseEntity<?> getXabarnomaUsername(String username){
         try {
-            List<Xabarnoma> xabarnomaList=xabarnomaRepository.findByUserUsername(username ,Sort.by(Sort.Direction.DESC, "createdAt"));
+            List<Xabarnoma> xabarnomaList=xabarnomaRepository.findByUserUsername(username ,Sort.by(Sort.Direction.ASC, "createdAt"));
             if (xabarnomaList != null) {
                 return ResponseEntity.ok(new Result(true, "getXabarnomaUsername xabarnoma succesfull", xabarnomaList));
             } else {
