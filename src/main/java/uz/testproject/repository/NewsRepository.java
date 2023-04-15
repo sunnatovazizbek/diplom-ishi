@@ -2,6 +2,7 @@ package uz.testproject.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,7 +21,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     News getById(Long id);
 
     @Query(nativeQuery = true, value = "select * from News n")
-    Page<News> findAllByPage(Pageable pageable);
+    Page<News> findAllByPage(Pageable pageable, Sort sort);
 
     @Query("select new uz.testproject.payload.NewsPayload(n.body) from News n where n.id=?1")
     NewsPayload findNewsBody(Long id);

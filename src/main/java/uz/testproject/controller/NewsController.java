@@ -26,6 +26,11 @@ public class NewsController {
         return newsService.editNews(payload);
     }
 
+    @PutMapping("/edit/hashId")
+    public ResponseEntity<?> editNewsHashId(@RequestBody NewsPayload payload){
+        return newsService.editNewsHashId(payload);
+    }
+
     @GetMapping("/")
     public ResponseEntity<?> getNewsListPage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size){
         return newsService.getPage(page, size);

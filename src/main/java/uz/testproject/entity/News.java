@@ -20,10 +20,10 @@ import java.sql.Date;
 @Entity
 public class News extends AbstractEntity {
 
-    @Column(unique = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String title;
 
-    @Column(unique = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     private String date;

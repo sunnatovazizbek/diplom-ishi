@@ -13,6 +13,8 @@ public interface NewsService {
 
     ResponseEntity<?> editNews(NewsPayload newsPayload);
 
+    ResponseEntity<?> editNewsHashId(NewsPayload newsPayload);
+
     ResponseEntity<?> getPage(int page, int size);
 
     ResponseEntity<?> getNewsBody(Long id);

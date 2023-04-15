@@ -13,8 +13,10 @@ import java.sql.Date;
 public class NewsPayload {
 
     private Long id;
+
+    @Column(columnDefinition = "TEXT")
     private String title;
-    @Column(unique = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     private String date;
