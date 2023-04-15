@@ -19,8 +19,8 @@ public class NewsPayload {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    private String date;
     private String img;
+    private String date;
 
     public NewsPayload(String title, String body, String img, String date) {
         this.title = title;
