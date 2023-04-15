@@ -2,6 +2,7 @@ package uz.testproject.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,9 @@ public class XabarnomaImpl implements XabarnomaService {
         try {
             Xabarnoma xabarnoma=xabarnomaRepository.findById(payload.getId()).get();
             xabarnoma.setBody(payload.getBody());
-            User user=userRepository.findByUsername(payload.getUserName());
-            xabarnoma.setUser(user);
+            if (payload.getAnswer() != null){
+                xabarnoma.setAnswer(payload.getAnswer());
+            }
             xabarnoma=xabarnomaRepository.save(xabarnoma);
             if (xabarnoma != null) {
                 return ResponseEntity.ok(new Result(true, "edit xabarnoma succesfull", null));
@@ -65,7 +67,7 @@ public class XabarnomaImpl implements XabarnomaService {
     @Override
     public ResponseEntity<?> getXabarnomaUsername(String username){
         try {
-            List<Xabarnoma> xabarnomaList=xabarnomaRepository.findByUserUsername(username);
+            List<Xabarnoma> xabarnomaList=xabarnomaRepository.findByUserUsername(username ,Sort.by(Sort.Direction.ASC, "createdAt"));
             if (xabarnomaList != null) {
                 return ResponseEntity.ok(new Result(true, "getXabarnomaUsername xabarnoma succesfull", xabarnomaList));
             } else {

@@ -20,6 +20,9 @@ public class Xabarnoma extends AbstractEntity {
     @Column(unique = true, columnDefinition = "TEXT")
     private String body;
 
+    @Column(unique = true, columnDefinition = "TEXT")
+    private String answer;
+
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore

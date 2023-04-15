@@ -20,8 +20,16 @@ public class XabarnomaPayload {
 
     private String userName;
 
+    private String answer;
+
     public XabarnomaPayload(String body, String userName) {
         this.body = body;
         this.userName = userName;
+    }
+
+    public XabarnomaPayload(String body, String userName, String answer) {
+        this.body = body;
+        this.userName = userName;
+        this.answer = answer;
     }
 }

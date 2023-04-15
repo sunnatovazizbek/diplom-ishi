@@ -41,7 +41,7 @@ public class XabarnomaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllIdBody(){
+    public ResponseEntity<?> getAllXabarnoma(){
         return ResponseEntity.ok(xabarnomaRepository.findAll());
     }
 
