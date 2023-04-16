@@ -28,10 +28,8 @@ public class News extends AbstractEntity {
 
     private String date;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Attachment img;
+    @Column(columnDefinition = "TEXT")
+    private String imgUrl;
 
 
 }

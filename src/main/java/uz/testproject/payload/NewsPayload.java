@@ -19,13 +19,13 @@ public class NewsPayload {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    private String img;
+    private String imgUrl;
     private String date;
 
-    public NewsPayload(String title, String body, String img, String date) {
+    public NewsPayload(String title, String body, String imgUrl, String date) {
         this.title = title;
         this.body = body;
-        this.img = img;
+        this.imgUrl = imgUrl;
         this.date = date;
     }
 

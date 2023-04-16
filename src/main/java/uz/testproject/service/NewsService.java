@@ -6,8 +6,12 @@ import org.springframework.http.ResponseEntity;
 import uz.testproject.entity.News;
 import uz.testproject.payload.NewsPayload;
 
+import java.util.List;
+
 public interface NewsService {
 
+
+    ResponseEntity<?> saveNewsList(List<NewsPayload> payloadList);
 
     ResponseEntity<?> addNews(NewsPayload newsPayload);
 

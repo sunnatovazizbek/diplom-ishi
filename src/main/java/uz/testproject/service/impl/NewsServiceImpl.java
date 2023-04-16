@@ -2,6 +2,9 @@ package uz.testproject.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -23,6 +26,27 @@ public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
     private final AttachmentRepository attachmentRepository;
 
+
+    @Override
+    public ResponseEntity<?> saveNewsList(List<NewsPayload> payloadList) {
+        try {
+            for (int i = 0; i < payloadList.size(); i++) {
+                News news = new News();
+                System.out.println(payloadList.get(i));
+                System.out.println();
+                news.setTitle(payloadList.get(i).getTitle());
+                news.setBody(payloadList.get(i).getBody());
+                news.setDate(payloadList.get(i).getDate());
+                news.setImgUrl(payloadList.get(i).getImgUrl());
+                newsRepository.save(news);
+            }
+            return ResponseEntity.ok(new Result(true, "created succesfull", newsRepository.findAll()));
+        } catch (Exception e) {
+            log.error("add news error -> {}", e.getMessage());
+            return ResponseEntity.ok(new Result(false, "News error in save", null));
+        }
+    }
+
     @Override
     public ResponseEntity<?> addNews(NewsPayload newsPayload) {
         try {
@@ -30,9 +54,7 @@ public class NewsServiceImpl implements NewsService {
             news.setTitle(newsPayload.getTitle());
             news.setBody(newsPayload.getBody());
             news.setDate(newsPayload.getDate());
-            if (newsPayload.getImg()!=null) {
-                news.setImg(attachmentRepository.findByHashId(newsPayload.getImg()));
-            }
+            news.setImgUrl(newsPayload.getImgUrl());
             System.out.println("keldi news = " + news.toString());
             news = newsRepository.save(news);
             if (news != null) {
@@ -53,8 +75,8 @@ public class NewsServiceImpl implements NewsService {
             news.setTitle(newsPayload.getTitle());
             news.setBody(newsPayload.getBody());
             news.setDate(newsPayload.getDate());
-            if (newsPayload.getImg()!=null) {
-                news.setImg(attachmentRepository.findByHashId(newsPayload.getImg()));
+            if (newsPayload.getImgUrl() != null) {
+                news.setImgUrl(newsPayload.getImgUrl());
             }
             news = newsRepository.save(news);
             if (news != null) {
@@ -72,8 +94,8 @@ public class NewsServiceImpl implements NewsService {
     public ResponseEntity<?> editNewsHashId(NewsPayload newsPayload) {
         try {
             News news = newsRepository.findById(newsPayload.getId()).get();
-            if (newsPayload.getImg()!=null) {
-                news.setImg(attachmentRepository.findByHashId(newsPayload.getImg()));
+            if (newsPayload.getImgUrl() != null) {
+                news.setImgUrl(newsPayload.getImgUrl());
             }
             news = newsRepository.save(news);
             if (news != null) {
@@ -94,7 +116,7 @@ public class NewsServiceImpl implements NewsService {
             PageRequest request = PageRequest.of(page, size);
             Page<News> newsPayloads = newsRepository.findAllByPage(request);
             for (int i = 0; i < newsPayloads.getContent().size(); i++) {
-                newsPayloads.getContent().get(i).setImg(newsPayloads.getContent().get(i).getImg());
+                newsPayloads.getContent().get(i).setImgUrl(newsPayloads.getContent().get(i).getImgUrl());
             }
             if (newsPayloads != null) {
                 return ResponseEntity.ok(new Result(true, "edit news succesfull", newsPayloads));
@@ -112,7 +134,7 @@ public class NewsServiceImpl implements NewsService {
     public ResponseEntity<?> getNewsBody(Long id) {
 
         try {
-            NewsPayload newsPayload=newsRepository.findNewsBody(id);
+            NewsPayload newsPayload = newsRepository.findNewsBody(id);
             return ResponseEntity.ok(newsPayload);
         } catch (Exception e) {
             log.error("getNewsBody");
@@ -140,7 +162,7 @@ public class NewsServiceImpl implements NewsService {
         System.out.println(news.getContent().size() + " ");
 
         for (int i = 0; i < news.getContent().size(); i++) {
-            news.getContent().get(i).setImg(news.getContent().get(i).getImg());
+            news.getContent().get(i).setImgUrl(news.getContent().get(i).getImgUrl());
         }
         return news;
 
