@@ -2,6 +2,7 @@ package uz.testproject.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,6 @@ import java.util.List;
 public interface NewSudSanasiRepository extends JpaRepository<NewSudSanasi, Long> {
 
     @Query("select new uz.testproject.payload.NewSudSanasiPayload(n.id,n.date,n.body, n.region, n.dateActive) from NewSudSanasi n")
-    List<NewSudSanasiPayload> getByUsername(String username);
+    List<NewSudSanasiPayload> getByUsername(String username, Sort sort);
 
 }

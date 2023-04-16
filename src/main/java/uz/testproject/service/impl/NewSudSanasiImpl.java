@@ -2,6 +2,7 @@ package uz.testproject.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -91,7 +92,7 @@ public class NewSudSanasiImpl implements NewSudSanasiService {
     @Override
     public ResponseEntity<?> getNewDateSanasi(String username){
         try {
-            List<NewSudSanasiPayload> newSudSanasiPayloadList=newSudSanasiRepository.getByUsername(username);
+            List<NewSudSanasiPayload> newSudSanasiPayloadList=newSudSanasiRepository.getByUsername(username, Sort.by(Sort.Direction.ASC, "createdAt"));
             if (newSudSanasiPayloadList != null) {
                 return ResponseEntity.ok(new Result(true, "get New DateSanasi succesfull", newSudSanasiPayloadList));
             } else {
