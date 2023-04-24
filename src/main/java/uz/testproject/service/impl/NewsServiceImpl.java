@@ -134,8 +134,8 @@ public class NewsServiceImpl implements NewsService {
     public ResponseEntity<?> getNewsBody(Long id) {
 
         try {
-            NewsPayload newsPayload = newsRepository.findNewsBody(id);
-            return ResponseEntity.ok(newsPayload);
+            News news = newsRepository.findById(id).get();
+            return ResponseEntity.ok(news);
         } catch (Exception e) {
             log.error("getNewsBody");
             return new ResponseEntity(new Result(false, "error", null), HttpStatus.CONFLICT);
